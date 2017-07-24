@@ -1,0 +1,34 @@
+textarea{
+    resize:none;
+}
+.container{
+    max-width: 960px;
+}
+a{
+    color:#000000;
+    outline: none;
+}
+.aColor{
+    color:#cc7a6f;
+}
+.codeColor{
+    color:#D26322;
+}
+.github{
+    float:right;
+    margin:10px 20px 0 0;
+    color:#cc7a6f;
+}
+.colBgc{
+    background-color:rgba(245, 247, 215, 0.45);
+}
+.tabPane{
+    padding:10px 0;
+}
+.divBoxA{
+    margin-top:10px;
+}
+.divBoxB{
+    width:100%;
+    min-height:100px;
+}
