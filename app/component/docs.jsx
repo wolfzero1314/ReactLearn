@@ -15,23 +15,24 @@ class Docs extends React.Component{
             githref:"https://github.com/facebook/react/blob/master/docs/docs/",
             facebookhref:"https://github.com/facebookincubator/",
             reacthref:"https://facebook.github.io/react/",
+            codepenhref:"https://codepen.io/gaearon/pen/",
         }
     }
     handleSelect(eventKey){
-        console.log(eventKey);
         event.preventDefault();
         this.setState({eventKey});
+        console.log(eventKey);
     }
     handlePageSelect(eventKey){
         event.preventDefault();
-        var eventKey=this.state.eventKey;
-        console.log(eventKey);
+        console.log(this.state.eventKey);
+
     }
-    //var localhref="https://github.com/facebook/react/blob/master/docs/docs/";
+
     render(){
         return(
             <section>
-                <Grid>
+                <Grid style={{marginTop:"60px"}}>
                     <Row>
                         <Col>
                             <Tab.Container id="left-tabs-example" defaultActiveKey={this.state.eventKey} onSelect={this.handleSelect}>
@@ -127,7 +128,7 @@ class Docs extends React.Component{
                                                         <h2>初次尝试</h2>
                                                         <div className="divBoxB">
                                                             <p>
-                                                                如果你仅仅只是对“玩”React感兴趣，那你可以使用 <a className="aColor" href="https://codepen.io/gaearon/pen/YGYmEG?editors=0010">CodePen</a>。
+                                                                如果你仅仅只是对“玩”React感兴趣，那你可以使用 <a className="aColor" href={this.state.codepenhref+"YGYmEG?editors=0010"}>CodePen</a>。
                                                                 尝试从这个Hello World案例开始吧！你不需要安装任何东西，只要修改一下代码，看看它是否完美执行了。
                                                             </p>
                                                             <p>
@@ -372,7 +373,7 @@ class Docs extends React.Component{
                                                 </a>
                                                 <div className="divBoxA">
                                                     开始尝试React的最便捷的方式就是使用
-                                                    <a className="aColor" href="https://codepen.io/gaearon/pen/ZpvBNJ?editors=0010">CodePen的Hello World案例</a>。
+                                                    <a className="aColor" href={this.state.codepenhref+"ZpvBNJ?editors=0010"}>CodePen的Hello World案例</a>。
                                                     你不需要安装任何东西;仅仅需要打开它，然后按步骤操作即可。如果你像使用自己的开发环境，那么请阅读 <code>安装介绍</code>。
                                                     <p>
                                                         最小的React案例：
@@ -422,7 +423,7 @@ class Docs extends React.Component{
                                                         <p>};</p>
                                                         <p>const element=(</p>
                                                         <p>&nbsp;&nbsp;&lt;h1&gt;</p>
-                                                        <p className="aColor">&nbsp;&nbsp;&nbsp;&nbsp;Hello,&#123;formatNumber(user)}!</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;Hello,&#123;formatNumber(user)}!</p>
                                                         <p>&nbsp;&nbsp;&lt;&frasl;h1&gt;</p>
                                                         <p>);</p>
                                                         <p>ReactDOM.render(</p>
@@ -431,7 +432,7 @@ class Docs extends React.Component{
                                                         <p>);</p>
                                                     </pre>
                                                     <p>
-                                                        <a className="aColor" href="https://codepen.io/gaearon/pen/PGEjdG?editors=0010">Try it on CodePen!!</a>
+                                                        <a className="aColor" href={this.state.codepenhref+"PGEjdG?editors=0010"}>Try it on CodePen!!</a>
                                                     </p>
                                                     <p>
                                                         为了增加可读性，我们把JSX分离出来了。然而这不是必需的，如果这么做了，我们推荐用圆括号把它包裹起来，以避免分号自动嵌入的陷阱。
@@ -444,9 +445,9 @@ class Docs extends React.Component{
                                                     <pre>
                                                         <p>function getGreeting(user)&#123;</p>
                                                         <p>&nbsp;&nbsp;if(user)&#123;</p>
-                                                        <p className="aColor">&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;&lt;h1&gt;Hello,&#123;formatName(user)&#125;!&lt;&frasl;h1&gt;;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;&lt;h1&gt;Hello,&#123;formatName(user)&#125;!&lt;&frasl;h1&gt;;</p>
                                                         <p>&nbsp;&nbsp;}</p>
-                                                        <p className="aColor">&nbsp;&nbsp;return&nbsp;&lt;h1&gt;Hello,Stranger.&lt;&frasl;h1&gt;;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;return&nbsp;&lt;h1&gt;Hello,Stranger.&lt;&frasl;h1&gt;;</p>
                                                         <p>};</p>
                                                     </pre>
                                                 </div>
@@ -496,7 +497,7 @@ class Docs extends React.Component{
                                                 </div>
                                                 <h3>JSX预防注入式攻击</h3>
                                                 <div className="divBoxB">
-                                                    <p>在JSX中嵌入用户输入是安全的：</p>
+                                                    <p>在JSX中嵌入用户输入区是安全的：</p>
                                                     <pre>
                                                         <p>conset title=response.potentiallyMaliciousInput;</p>
                                                         <p>
@@ -568,13 +569,87 @@ class Docs extends React.Component{
                                                 <a className="github" href={this.state.githref+"rendering-elements.md"}>
                                                     <u>Edit On GitHub</u>
                                                 </a>
-                                                <div className="divBoxA">元素是构造React app最小的模块</div>
-                                                <h3>添加元素到DOM对象</h3>
-                                                <div className="divBoxB">添加元素到DOM对象</div>
+                                                <div className="divBoxA">
+                                                    <p>元素是构造React app最小的模块。</p>
+                                                    <p>一个元素描述了你将在屏幕上浏览到的东西：</p>
+                                                    <pre>
+                                                        <p>conset element=&lt;h1&gt;Hello,world!&lt;&frasl;h1&gt;</p>
+                                                    </pre>
+                                                    <p>与浏览器的DOM元素不同，React元素都是简单的object,并且易于创建。</p>
+                                                    <p>React DOM会注意更新DOM，使它们匹配React元素。</p>
+                                                    <Well>
+                                                        <h4>特别提醒</h4>
+                                                        <p>
+                                                            人们可能会混淆elements和components这个更广义的概念。
+                                                            我们会在下一部分介绍components。
+                                                            elements是components的组成部分，在阅读后面的内容前，我们希望你能阅读这部分内容。
+                                                        </p>
+                                                    </Well>
+                                                </div>
+                                                <h3>添加elements到DOM</h3>
+                                                <div className="divBoxB">
+                                                    <p>假设你的HTMl文件里有这样一个 <code>&lt;div&gt;</code></p>
+                                                    <pre>
+                                                        <p>&lt;div id="root"&gt;&lt;&frasl;div&gt;</p>
+                                                    </pre>
+                                                    <p>我们把它叫做“根”DOM节点，因为它内部的一切都将被React DOM处理转化。</p>
+                                                    <p>通常用React构建的项目都有一个单独的根DOM节点。如果你准备把React整合进一个已有的app，你可以按照自己的喜好，设置多个独立的根DOM节点。</p>
+                                                    <pre>
+                                                        <p>const element=&lt;h1&gt;Hello,world!&lt;&frasl;h1&gt;</p>
+                                                        <p>ReactDOM.render(</p>
+                                                        <p>&nbsp;&nbsp;&lt;element&frasl;&gt;,</p>
+                                                        <p>&nbsp;&nbsp;document.getElementById("root")</p>
+                                                        <p>)</p>
+                                                    </pre>
+                                                    <a href={this.state.codepenhref+"rrpgNB?editors=1010"} className="aColor">用CodePen尝试代码</a>
+                                                </div>
                                                 <h3>更新已渲染的元素</h3>
-                                                <div className="divBoxB">更新已渲染的元素</div>
+                                                <div className="divBoxB">
+                                                    <p>
+                                                        React elements是 <a className="aColor" href="https://en.wikipedia.org/wiki/Immutable_object">不可变</a>的。
+                                                        一旦你创建了一个element，你就不能再改变它的子元素或属性。一个element就像电影里一个单独的画面：它代表了某一时间点上的用户界面。
+                                                    </p>
+                                                    <p>以我们现在的知识，唯一更新用户界面的办法救市创建一个新的element,并把它传给 <code className="codeColor">ReactDOM.render()</code>。</p>
+                                                    <p>我们来看看下面的ticking clock案例：</p>
+                                                    <pre>
+                                                        <p>function tick() &#123;</p>
+                                                        <p>&nbsp;&nbsp;const element=(</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Helleo,world!&lt;&frasl;h1&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;It is &#123;new Date().toLocaleTimeString()&#125;&lt;&frasl;h2&gt;.</p>
+                                                        <p>&nbsp;&nbsp;);</p>
+                                                        <p>ReactDOM.render(</p>
+                                                        <p>&nbsp;&nbsp;element,</p>
+                                                        <p>&nbsp;&nbsp;document.getElementById('root')</p>
+                                                        <p>};</p>
+                                                        <p>setInterval(tick,1000);</p>
+                                                    </pre>
+                                                    <a className="aColor" href={this.state.codepenhref+"gwoJZk?editors=0010"}>用CodePen尝试代码</a>
+                                                    <p>它会通过 <code className="codeColor">setInterval()</code>每一秒都调用一次 <code className="codeColor">ReactDOM.render()</code>。</p>
+                                                    <Well>
+                                                        <h4>特别提醒</h4>
+                                                        <p>
+                                                            事实上，大多数React app仅仅调用一次<code className="codeColor">ReactDOM.render()</code>。
+                                                            在下一部分，我们会学些这样的代码是如何封装到有状态的组件里的。
+                                                        </p>
+                                                        <p>我们建议不要跳过总纲，因为它们互相依赖。</p>
+                                                    </Well>
+                                                </div>
                                                 <h3>React只更新必要的元素</h3>
-                                                <div className="divBoxB">React只更新必要的元素</div>
+                                                <div className="divBoxB">
+                                                    <p>
+                                                        React DOM会把当前元素系子元素同它之前的做比较，并且仅允许有更新必要的DOM把DOM传递给期望的state.
+                                                    </p>
+                                                    <p>
+                                                        你可以通过浏览器工具检查 <a className="aColor" href="https://codepen.io/gaearon/pen/gwoJZk?editors=0010">最后一个案例</a>。
+                                                    </p>
+                                                    <p>
+                                                        尽管我们创建了一个element用来描述每一次ticks时的整个用户界面树，但是只有有内容变化的代码被React DOM更新了。
+                                                    </p>
+                                                    <p>
+                                                        根据我们的经验，思考UI在任一时间的展示效果而不是如何通过时间消除所有类的错误来改变它。
+                                                    </p>
+                                                </div>
                                                 <Pager onSelect={this.handlePageSelect}>
                                                     <Pager.Item previous href="#">&larr; Prev</Pager.Item>
                                                     <Pager.Item next href="#">Next &rarr;</Pager.Item>
@@ -591,15 +666,248 @@ class Docs extends React.Component{
                                                     <p>从概念上理解，components就像JavaScript的函数。它们接收任意的输入(我们称为“props”)，并返回用来描述应该展示在屏幕上的React元素。</p>
                                                 </div>
                                                 <h3>函数的和类的组件</h3>
-                                                <div className="divBoxB">函数的和类的组件</div>
+                                                <div className="divBoxB">
+                                                    <p>定义一个component最方便的方式就是通过Javascript函数：</p>
+                                                    <pre>
+                                                        <p>function Welecome(props)&#123;</p>
+                                                        <p>&nbsp;&nbsp;return &lt;h1&gt;Hello,&#123;props.name&#125;&lt;&frasl;h1&gt;</p>
+                                                        <p>}</p>
+                                                    </pre>
+                                                    <p>ES6 定义一个component:</p>
+                                                    <pre>
+                                                        <p>class Welcome extends React.Component&#123;</p>
+                                                        <p>&nbsp;&nbsp;render()&#123;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;return &lt;h1&gt;Hello,&#123;this.props.name&#125;&lt;&frasl;h1&gt;</p>
+                                                        <p>&nbsp;&nbsp;}</p>
+                                                        <p>}</p>
+                                                    </pre>
+                                                    <p>从React的角度看，以上两种写法是同等的。</p>
+                                                </div>
                                                 <h3>渲染一个组件</h3>
-                                                <div className="divBoxB">渲染一个组件</div>
+                                                <div className="divBoxB">
+                                                    <p>之前我们只遇到了用React元素代表DOM标签的情况：</p>
+                                                    <pre>
+                                                        <p>const element=&lt;div &frasl;&gt; ;</p>
+                                                    </pre>
+                                                    <p>然而，元素也可以用来代替用户定义的组件：</p>
+                                                    <pre>
+                                                        <p>const element=&lt;Welcome name="Sara"&frasl;&gt; ;</p>
+                                                    </pre>
+                                                    <p>
+                                                        当React发现一个元素代表了一个用户定义的组件时，它就会把JSX属性作为独立的对象传递给这个组件。我们把这个对象叫做“props”。
+                                                    </p>
+                                                    <p>例如，下面的例子会在页面渲染出“Hello,Sara”:</p>
+                                                    <pre>
+                                                        <p className="baclCode">function Welecome(props)&#123;</p>
+                                                        <p>&nbsp;&nbsp;return &lt;h1&gt;Hello,&#123;props.name&#125;&lt;&frasl;h1&gt;</p>
+                                                        <p>}</p>
+                                                        <p className="baclCode">const element=&lt;Welcome name="Sara"&frasl;&gt; ;</p>
+                                                        <p>ReactDOM.render(</p>
+                                                        <p>&nbsp;&nbsp;element,</p>
+                                                        <p>&nbsp;&nbsp;document.getElementById('root')</p>
+                                                        <p>)</p>
+                                                    </pre>
+                                                    <p><a className="aColor" href={this.state.codepenhref+"YGYmEG?editors=0010"}>用CodePen测试代码</a></p>
+                                                    <p>
+                                                        我们简单分析一下这个案例中发生了什么：
+                                                    </p>
+                                                    <ul>
+                                                        <li>我们通过 <code>&lt;Welcome name="Sara"&frasl;&gt;</code>元素调用了 <code>ReactDOM.render()</code>.</li>
+                                                        <li>React调用 <code>Welcome</code>组件，把 <code>&#123;name="Sara"&#125;</code>作为props.</li>
+                                                        <li><code>Welcome</code>组件把 <code>&lt;h1&gt;Hello,Sara&lt;&frasl;h1&gt;</code>元素作为结果返回.</li>
+                                                        <li>React DOM立即匹配 <code>&lt;h1&gt;Hello,Sara&lt;&frasl;h1&gt;</code>更新DOM.</li>
+                                                    </ul>
+                                                    <Well>
+                                                        <h4>警告</h4>
+                                                        <p>组件首字母必须大写。</p>
+                                                    </Well>
+                                                </div>
                                                 <h3>构造组件</h3>
-                                                <div className="divBoxB">构造组件</div>
+                                                <div className="divBoxB">
+                                                    <p>
+                                                        组件可以引用其他组件的输出。这使得我们可以对任一级的详情使用相同的组件抽象。
+                                                        button，form，dialog,screen,在React app里，所有这些通常都作为组件使用。
+                                                    </p>
+                                                    <p>例如，我们可以创建一个 <code>App</code>组件来多次渲染 <code>Welcome</code>:</p>
+                                                    <pre>
+                                                        <p>function Welcome(props)&#123;</p>
+                                                        <p>&nbsp;&nbsp;return &lt;h1&gt;Hello,&#123;props.name&#125;&lt;&frasl;h1&gt;</p>
+                                                        <p>}</p>
+                                                        <br/>
+                                                        <p>function App()&#123;</p>
+                                                        <p>&nbsp;&nbsp;return(</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Welcome name="Sara"&frasl;&gt;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Welcome name="Cahal"&frasl;&gt;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Welcome name="Edite"&frasl;&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&frasl;&gt;</p>
+                                                        <p>&nbsp;&nbsp;);</p>
+                                                        <p>}</p>
+                                                        <br/>
+                                                        <p>ReactDOM.render(</p>
+                                                        <p>&nbsp;&nbsp;&lt;App&frasl;&gt;,</p>
+                                                        <p>&nbsp;&nbsp;document.getElementById('root')</p>
+                                                        <p>);</p>
+                                                    </pre>
+                                                    <p>
+                                                        <a className="aColor" href={this.state.codepenhref+"KgQKPr?editors=0010"}>用CodePen测试代码</a>
+                                                    </p>
+                                                    <p>
+                                                        React的特色是在新创建的app的底层有一个 <code>App</code>的组件。但是，你如果想把React整合到已有的app内，
+                                                        你可以用类似 <code>Button</code>的小组件自下而上的，逐步的排除困难向更高的视图层次结构前进。
+                                                    </p>
+                                                    <Well>
+                                                        <h4>警告</h4>
+                                                        <p>
+                                                            组件必须返回一个单一的根元素。这就是我们用一个 <code>&lt;div&gt;</code>包裹 <code>&lt;Welecome&frasl;&gt;</code>元素的原因。
+                                                        </p>
+                                                    </Well>
+                                                </div>
                                                 <h3>提取组件</h3>
-                                                <div className="divBoxB">提取组件</div>
-                                                <h3>属性都是只读的</h3>
-                                                <div className="divBoxB">属性都是只读的</div>
+                                                <div className="divBoxB">
+                                                    <p>不用担心把组件分割成更小的组件。</p>
+                                                    <p>例如，思考一下这个 <code>Comment</code>组件</p>
+                                                    <pre>
+                                                        <p>function Comment(props)&#123;</p>
+                                                        <p>&nbsp;&nbsp;return (</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="Comment"&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="UserInfo"&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img className="Avatar"</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src=&#123;props.author.avatarUrl&#125;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alt=&#123;props.author.name&#125;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&frasl;&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="UserInfo-name"&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;props.author.name&#125;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="Comment-text"&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;props.text&#125;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="Comment-date"&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;formatDate(props.date)&#125;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;);</p>
+                                                        <p>}</p>
+                                                    </pre>
+                                                    <p>
+                                                        <a className="aColor" href={this.state.codepenhref+"VKQwEo?editors=0010"}>用CodePen测试代码</a>
+                                                    </p>
+                                                    <p>
+                                                        上面的例子接收了 <code>author</code>(一个对象)，<code>text</code>(一个文本)和<code>date</code>(一个字符串)作为属性，并描述社交媒体网站上的一个评论。
+                                                    </p>
+                                                    <p>
+                                                        这个组件因为所有嵌套的原因很难改变，并且它里面的单一个体的复用性差。我们来提取几个组件。
+                                                    </p>
+                                                    <p>首先提取 <code>Avatar</code>:</p>
+                                                    <pre>
+                                                        <p>function Avatar(props)&#123;</p>
+                                                        <p>&nbsp;&nbsp;return (</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&lt;img className="Avatar"</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src=&#123;props.user.avatarUrl&#125;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alt=&#123;props.user.name&#125;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&frasl;&gt;</p>
+                                                        <p>&nbsp;&nbsp;);</p>
+                                                        <p>}</p>
+                                                    </pre>
+                                                    <p>
+                                                        <code>Avatar</code>不需要知道它正被渲染进 <code>Comment</code>。
+                                                        这就是我们给予它的props一个更广义的名字：<code>user</code>而不是 <code>author</code>.
+                                                    </p>
+                                                    <p>
+                                                        我们推荐从组件自己的角度来为props命名，而不是它未来被使用的环境的角度。
+                                                    </p>
+                                                    <p>现在我们可以稍微简化一点 <code>Comment</code>:</p>
+                                                     <pre>
+                                                        <p>function Comment(props)&#123;</p>
+                                                        <p>&nbsp;&nbsp;return (</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="Comment"&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="UserInfo"&gt;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Avatar user=&#123;props.author&#125;&frasl;&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="UserInfo-name"&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;props.author.name&#125;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="Comment-text"&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;props.text&#125;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="Comment-date"&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;formatDate(props.date)&#125;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;);</p>
+                                                        <p>}</p>
+                                                    </pre>
+                                                    <p>下面，我们来提取 <code>UserInfo</code>组件，它会渲染一个紧挨着用户名字的 <code>Avatar</code>组件：</p>
+                                                    <pre>
+                                                        <p>function UserInfo(props)&#123;</p>
+                                                        <p>&nbsp;&nbsp;return (</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="UserInfo"&gt;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Avatar user=&#123;props.user&#125;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="UserInfo-name"&gt;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;props.user.name&#125;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;);</p>
+                                                        <p>}</p>
+                                                    </pre>
+                                                    <p>这样我们可以更近一步的简化 <code>Comment</code>:</p>
+                                                    <pre>
+                                                        <p>function Comment(props)&#123;</p>
+                                                        <p>&nbsp;&nbsp;return (</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="Comment"&gt;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;UserInfo user=&#123;props.author&#125;&frasl;&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="Comment-text"&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;props.text&#125;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="Comment-date"&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;formatDate(props.date)&#125;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;);</p>
+                                                        <p>}</p>
+                                                    </pre>
+                                                    <p>
+                                                        <a className="aColor" href={this.state.codepenhref+"rrJNJY?editors=0010"}>用CodePen测试代码</a>
+                                                    </p>
+                                                    <p>
+                                                        开始时，提取组件可能觉得有些乏味，但是在更大的app里有一个复用组件库是值得的。
+                                                        一个好的经验法则是，你的UI的某一部分是否可以多次调用(<code>Button,Panel,Avatar</code>),
+                                                        或者就自身而言足够复杂(<code>App,FeedStory,Comment</code>),
+                                                        成为可重用的组件才是一个合格的候选者。
+                                                    </p>
+                                                </div>
+                                                <h3>Props都是只读的</h3>
+                                                <div className="divBoxB">
+                                                    <p>
+                                                        无论你声明一个组件
+                                                        <a className="aColor" href={this.state.reacthref+"docs/components-and-props.html#functional-and-class-components"}> 作为一个函数或者一个类</a>，
+                                                        它绝不能修改自己的props.
+                                                    </p>
+                                                    <p>思考这个 <code>sum</code>函数：</p>
+                                                    <pre>
+                                                        <p>function sum(a,b)&#123;</p>
+                                                        <p>&nbsp;&nbsp;return a+b;</p>
+                                                        <p>}</p>
+                                                    </pre>
+                                                    <p>
+                                                        这样的函数被称为“pure(纯净的)”，因为它们没有试图改变它们的输入值，并且总是因为相同的输入值返回相同的结果。
+                                                    </p>
+                                                    <p>与此相反，下面这个函数是不纯净的，因为它改变了自己的输入值：</p>
+                                                    <pre>
+                                                        <p>function withdraw(account,amount)&#123;</p>
+                                                        <p>account.total-=amount;</p>
+                                                        <p>}</p>
+                                                    </pre>
+                                                    <p>
+                                                        React的确很灵活但是也有一个独立的严格的法则：
+                                                    </p>
+                                                    <h4 className="backCode">所有的React组件必须像纯函数一样尊敬它们的props。即:props不可修改。</h4>
+                                                    <p>
+                                                        当然了，程序的UI是动态的并且随时间变化的。下一节，我们会介绍一个新的概念“state”.
+                                                        state允许React组件在响应用户需求，网络请求和任何其他需求时，随时改变它们的输出，不需要违反这条规则。
+                                                    </p>
+                                                </div>
                                                 <Pager onSelect={this.handlePageSelect}>
                                                     <Pager.Item previous href="#">&larr; Prev</Pager.Item>
                                                     <Pager.Item next href="#">Next &rarr;</Pager.Item>
@@ -616,9 +924,69 @@ class Docs extends React.Component{
                                                         <a className="aColor" href="https://facebook.github.io/react/docs/rendering-elements.html#updating-the-rendered-element">ticking clock案例</a>
                                                     </p>
                                                     <p>迄今为止，我们只学习了一种更新UI的方式</p>
-                                                    <p>就是通过调用 <code className="codeColor">ReactDOM.render()</code>来渲染要输出的元素。</p>
+                                                    <p>就是通过调用 <code className="codeColor">ReactDOM.render()</code>来改变已渲染的输出内容。</p>
+                                                    <pre>
+                                                        <p>function tick()&#123;</p>
+                                                        <p>&nbsp;&nbsp;const element=(</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Hello,world!&lt;&frasl;h1&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;It is &#123;new Date().toLocaleTimeString()&#125;&lt;&frasl;h2&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;);</p>
+                                                        <br/>
+                                                        <p className="backCode">&nbsp;&nbsp;ReactDOM.render(</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;element,</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('root')</p>
+                                                        <p className="backCode">&nbsp;&nbsp;);</p>
+                                                        <p>}</p>
+                                                        <br/>
+                                                        <p>setInterval(tick,1000);</p>
+                                                    </pre>
+                                                    <p><a className="aColor" href={this.state.codepenhref+"gwoJZk?editors=0010"}>用CodePen测试代码</a></p>
+                                                    <p>
+                                                        在这部分，我们将学习如何使 <code>Clock</code>组件真正的实现复用和封装。
+                                                        它会设置自己的定时器并且实现每一秒的自我更新。
+                                                    </p>
+                                                    <p>
+                                                        封装代码如下：
+                                                    </p>
+                                                    <pre>
+                                                        <p>function Clock(props)&#123;</p>
+                                                        <p>&nbsp;&nbsp;return (</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Hello,world!&lt;&frasl;h1&gt;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;It is &#123;props.date.toLocaleTimeString()&#125;&lt;&frasl;h2&gt;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;);</p>
+                                                        <p>}</p>
+                                                        <br/>
+                                                        <p>function tick()&#123;</p>
+                                                        <p>&nbsp;&nbsp;ReactDOM.render(</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&lt;Clock date=&#123;new Date()&#125;&frasl;&gt;,</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('root')</p>
+                                                        <p>&nbsp;&nbsp;);</p>
+                                                        <p>}</p>
+                                                        <br/>
+                                                        <p>setInterval(tick,1000)</p>
+                                                    </pre>
+                                                    <p><a className="aColor" href={this.state.codepenhref+"dpdoYR?editors=0010"}>用CodePen测试代码</a></p>
+                                                    <p>但是，上面的代码忽视了一个重要的要求：事实上应该是 <code>Clock</code>设置一个计时器，并且每一秒都更新用户界面.</p>
+                                                    <p>理想的情况是，我们指定一次，然后让 <code>Clock</code>实现自己更新：</p>
+                                                    <pre>
+                                                        <p>ReactDOM.render(</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&lt;Clock&frasl;&gt;,</p>
+                                                        <p>&nbsp;&nbsp;document.getElementById('root')</p>
+                                                        <p>);</p>
+                                                    </pre>
+                                                    <p>为了实现上面的想法，我们需要给 <code>Clock</code>组件添加“state”.</p>
+                                                    <p>state和props类似，但是它是私有的，并且完全受组件控制。</p>
+                                                    <p>
+                                                        我们 <a href={this.state.reacthref+"docs/components-and-props.html#functional-and-class-components"}>之前说过</a>
+                                                        component定义为class有一些额外的特性。
+                                                    </p>
+                                                    <p>实际情况则是：特性仅适用于class</p>
                                                 </div>
-                                                <h3>把一个函数转化成一个类</h3>
+                                                <h3>把Function转化成Class</h3>
                                                 <div className="divBoxB">
                                                     <p>你可以通过五个步骤把像<code className="codeColor">Clock</code>的一个函数组件转化成一个类：</p>
                                                     <ol>
@@ -630,11 +998,108 @@ class Docs extends React.Component{
                                                         <li>用 <code className="codeColor">this.props</code> 替换掉 <code className="codeColor">render()</code> 方法内的 <code className="codeColor">props</code> </li>
                                                         <li>删除剩下的空的函数声明</li>
                                                     </ol>
+                                                    <pre>
+                                                        <p>class Clock extends React.Component&#123;</p>
+                                                        <p>&nbsp;&nbsp;render()&#123;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;return(</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Hello,world!&lt;&frasl;h1&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;It is &#123;this.props.date.toLocaleTimeString()&#125;&lt;&frasl;h2&gt;.</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;);</p>
+                                                        <p>&nbsp;&nbsp;}</p>
+                                                        <p>}</p>
+                                                    </pre>
+                                                    <p><a className="aColor" href={this.state.codepenhref+"zKRGpo?editors=0010"}>用CodePen测试代码</a></p>
+                                                    <p>现在<code>Clock</code>就被定义为了一个classe而不是function.</p>
+                                                    <p>这样我们就可以使用附加的特性了，比如：local state和liffcycle hooks.(生命周期函数钩子)</p>
                                                 </div>
-                                                <h3>添加本地state到类</h3>
-                                                <div className="divBoxB">添加本地state到一个类</div>
-                                                <h3>添加生命周期函数到类</h3>
-                                                <div className="divBoxB">添加生命周期函数到一个类</div>
+                                                <h3>添加Local State 到 Class</h3>
+                                                <div className="divBoxB">
+                                                    <p>我们将通过三步把 <code>date</code>从props移动到state:</p>
+                                                    <p>1)在 <code>render()</code>方法中，用 <code>this.state.date</code>替换掉 <code>this.props.date</code>:</p>
+                                                    <pre>
+                                                        <p>class Clock extends React.Component&#123;</p>
+                                                        <p>&nbsp;&nbsp;render()&#123;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;return(</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Hello,world!&lt;&frasl;h1&gt;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;It is &#123;this.state.date.toLocaleTimeString()&#125;&lt;&frasl;h2&gt;.</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;);</p>
+                                                        <p>&nbsp;&nbsp;}</p>
+                                                        <p>}</p>
+                                                    </pre>
+                                                    <p>
+                                                        2)添加 <a className="aColor" href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor">class constructor</a>
+                                                        来分派初始的 <code>this.state</code>
+                                                    </p>
+                                                    <pre>
+                                                        <p>class Clock extends React.Component&#123;</p>
+                                                        <p>&nbsp;&nbsp;constructor(props)&#123;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;super(props);</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;this.state=&#123;date:new Date()&#125;;</p>
+                                                        <p>&nbsp;&nbsp;}</p>
+                                                        <br/>
+                                                        <p>&nbsp;&nbsp;render()&#123;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;return(</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Hello,world!&lt;&frasl;h1&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;It is &#123;this.state.date.toLocaleTimeString()&#125;&lt;&frasl;h2&gt;.</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;);</p>
+                                                        <p>&nbsp;&nbsp;}</p>
+                                                        <p>}</p>
+                                                    </pre>
+                                                    <p>记录如何将<code>props</code>传递给基层的constructor:</p>
+                                                    <pre>
+                                                        <p>&nbsp;&nbsp;constructor(props)&#123;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;super(props);</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;this.state=&#123;date:new Date()&#125;;</p>
+                                                        <p>&nbsp;&nbsp;}</p>
+                                                    </pre>
+                                                    <p>
+                                                        Class组件会一直调用携带有 <code>props</code>的基层constructor。
+                                                    </p>
+                                                    <p>3)删除<code>Clock</code>元素中的<code>date</code>属性：</p>
+                                                    <pre>
+                                                        <p>&nbsp;&nbsp;ReactDOM.render(</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&lt;Clock &frasl;&gt;,</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('root')</p>
+                                                        <p>&nbsp;&nbsp;);</p>
+                                                    </pre>
+                                                    <p>
+                                                        结果就是这样的：
+                                                    </p>
+                                                    <pre>
+                                                        <p>class Clock extends React.Component&#123;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;constructor(props)&#123;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;super(props);</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;this.state=&#123;date:new Date()&#125;;</p>
+                                                        <p>&nbsp;&nbsp;}</p>
+                                                        <br/>
+                                                        <p>&nbsp;&nbsp;render()&#123;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;return(</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Hello,world!&lt;&frasl;h1&gt;</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;It is &#123;this.state.date.toLocaleTimeString()&#125;&lt;&frasl;h2&gt;.</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&frasl;div&gt;</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;);</p>
+                                                        <p>&nbsp;&nbsp;}</p>
+                                                        <p>}</p>
+                                                        <br/>
+                                                        <p>&nbsp;&nbsp;ReactDOM.render(</p>
+                                                        <p className="backCode">&nbsp;&nbsp;&nbsp;&nbsp;&lt;Clock &frasl;&gt;,</p>
+                                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('root')</p>
+                                                        <p>&nbsp;&nbsp;);</p>
+                                                    </pre>
+                                                    <p><a className="aColor" href={this.state.codepenhref+"KgQpJd?editors=0010"}>用CodePen测试代码</a></p>
+                                                </div>
+                                                <p>接下来，我们就要给<code>Clock</code>设置自己的计时器，并实现实时自我更新。</p>
+                                                <h3>添加Lifrcycle Methods到Class</h3>
+                                                <div className="divBoxB">
+
+                                                </div>
                                                 <h3>正确使用state</h3>
                                                 <div className="divBoxB">
                                                     <h4>不要直接修改state,而是使用 <code className="codeColor">setState()</code> </h4>
